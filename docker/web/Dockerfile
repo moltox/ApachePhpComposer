@@ -1,7 +1,4 @@
-FROM php:7.0-apache
-#FROM php:7.2-apache
-#FROM php:5.5-apache
-
+FROM php:7.4-apache
 
 RUN apt-get update -yqq && \
     apt-get install -y apt-utils zip unzip && \
