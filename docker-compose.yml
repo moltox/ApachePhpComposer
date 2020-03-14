@@ -1,0 +1,29 @@
+version: '3'
+
+
+services:
+
+  web:
+    container_name: ${APP_NAME}_web
+    hostname: mybus-dev
+    build:
+      context: ./docker/web
+
+    ports:
+      - 9100:80
+
+    labels:
+      - "traefik.frontend.rule=Host:dev.apci.docker"
+      - "traefik.port=80"
+
+    volumes:
+      - /var/run/docker.sock:/var/run/docker.sock
+      - ./:/var/www/app
+#      - ./:/var/www/app
+
+    networks:
+      - traefik-portainer_default
+
+networks:
+  traefik-portainer_default:
+    external: true
