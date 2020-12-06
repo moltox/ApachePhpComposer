@@ -1,13 +1,16 @@
 FROM php:7.4-apache
 
 RUN apt-get update -yqq && \
+    apt-get upgrade -y && \
     apt-get install -y apt-utils zip unzip && \
     apt-get install -y nano && \
     apt-get install -y libzip.dev libpq-dev && \
+    apt-get install -y npm && \
     a2enmod rewrite && \
     docker-php-ext-install mysqli && \
     docker-php-ext-install pdo_mysql
 
+RUN rm -rf /var/lib/apt/lists/*
 
 RUN php -r "readfile('http://getcomposer.org/installer');" | php -- --install-dir=/usr/bin --filename=composer
 
