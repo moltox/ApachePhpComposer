@@ -9,9 +9,6 @@ services:
     build:
       context: ./docker/web
 
-    ports:
-      - 9100:80
-
     labels:
       - "traefik.frontend.rule=Host:dev.apci.docker"
       - "traefik.port=80"
